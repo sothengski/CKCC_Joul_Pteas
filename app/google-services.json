@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "312096690990",
+    "firebase_url": "https://ckcc-project-408c9.firebaseio.com",
+    "project_id": "ckcc-project-408c9",
+    "storage_bucket": "ckcc-project-408c9.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:312096690990:android:f980f42d3736557a",
+        "android_client_info": {
+          "package_name": "com.example.sothengchheang.ckcc_joul_pteas"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "312096690990-htbbi1121k6sofgtdlbcd4ssa0epqkoh.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAT68EpAV9E1d-0o8qrt6vmh9YLWsxXytA"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

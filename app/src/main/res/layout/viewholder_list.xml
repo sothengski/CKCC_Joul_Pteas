@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="300dp"
+    android:padding="16dp"
+    xmlns:fresco="http://schemas.android.com/apk/res-auto"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+
+    android:background="@drawable/myrect">
+
+
+    <com.facebook.drawee.view.SimpleDraweeView
+        fresco:roundedCornerRadius="10dp"
+        android:id="@+id/img_list"
+        android:layout_width="match_parent"
+        android:layout_height="220dp"
+        fresco:placeholderImage="@drawable/ic_image_default"
+        android:scaleType="centerInside"/>
+    <TextView
+
+        android:id="@+id/txt_date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:drawableLeft="@drawable/ic_date"
+        android:text="Date" />
+    <TextView
+        android:id="@+id/txt_price"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/txt_date"
+        android:text="Price: "
+        android:textAppearance="@style/TextAppearance.AppCompat.Large" />
+
+
+</RelativeLayout>

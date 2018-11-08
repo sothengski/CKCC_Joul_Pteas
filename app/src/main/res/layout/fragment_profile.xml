@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    >
+
+    <android.support.v4.widget.DrawerLayout
+        android:id="@+id/drawer1"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="250dp"
+            android:layout_margin="15dp"
+            android:orientation="vertical"
+            >
+
+            <ImageView
+                android:layout_gravity="center_horizontal"
+                android:id="@+id/img_profile"
+                android:layout_width="92dp"
+                android:layout_height="92dp"
+                android:layout_centerInParent="true"
+                android:src="@drawable/ic_mnu_profile"
+                />
+
+            <!--<TextView-->
+            <!--android:layout_gravity="center_horizontal"-->
+            <!--android:layout_width="100dp"-->
+            <!--android:layout_height="20dp"-->
+            <!--android:layout_below="@id/img_profile"-->
+            <!--android:layout_centerInParent="true"-->
+            <!--android:gravity="center"-->
+
+            <!--android:text="Sotheng Ski" />-->
+            <!--<android.support.v7.widget.RecyclerView-->
+
+            <!--android:id="@+id/recycler_view"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content" />-->
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="start">
+
+            <android.support.design.widget.NavigationView
+                android:id="@+id/nav_view"
+                app:headerLayout="@layout/navigation_view_header"
+                app:menu="@menu/menu"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+
+                android:layout_gravity="start"
+                android:fitsSystemWindows="true" />
+
+        </LinearLayout>
+    </android.support.v4.widget.DrawerLayout>
+
+
+</FrameLayout>
