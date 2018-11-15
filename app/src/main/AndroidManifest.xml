@@ -24,7 +24,8 @@
         <activity
             android:name=".Add_Item_Activity"
             android:label="@string/title_activity_add__item_"
-            android:theme="@style/AppTheme"></activity>
+            android:theme="@style/AppTheme" />
+        <activity android:name=".Detail_List_Activity"></activity>
     </application>
 
 </manifest>

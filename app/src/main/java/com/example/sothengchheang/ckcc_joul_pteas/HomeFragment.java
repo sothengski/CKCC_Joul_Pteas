@@ -152,7 +152,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
 
     }
 
-    class ItemsAdapter extends RecyclerView.Adapter<ItemViewHolder> {
+    class ItemsAdapter extends RecyclerView.Adapter<ItemsAdapter.ItemViewHolder> {
         private Item[] items;
 
         public Item[] getItems() {
@@ -191,28 +191,37 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
 //                return lists.length;
 //            }
         }
-    }
 
-    class ItemViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-        private SimpleDraweeView imageView;
-        private TextView txtPrice;
-        private TextView txtDate;
+        //View Holder
+        class ItemViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+            private SimpleDraweeView imageView;
+            private TextView txtPrice;
+            private TextView txtDate;
 
-        public ItemViewHolder(@NonNull View itemView) {
-            super(itemView);
+            public ItemViewHolder(@NonNull View itemView) {
+                super(itemView);
 
-            imageView = itemView.findViewById(R.id.img_list);
-            txtPrice = itemView.findViewById(R.id.txt_price);
-            txtDate = itemView.findViewById(R.id.txt_date);
+                imageView = itemView.findViewById(R.id.img_list);
+                txtPrice = itemView.findViewById(R.id.txt_price);
+                txtDate = itemView.findViewById(R.id.txt_date);
 
-//            itemView.setOnClickListener(this);
+                itemView.setOnClickListener(this);
+            }
+
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), Detail_List_Activity.class);
+
+                //Pass data
+                int index = getAdapterPosition();
+                Item item = items[index];
+                Gson gson = new Gson();
+                String itemJson = gson.toJson(item);
+                intent.putExtra("itemJson", itemJson);
+
+                startActivity(intent);
+            }
         }
-
-        @Override
-        public void onClick(View v) {
-
-        }
-    }
 //    public void onClick(View view) {
 //        Intent intent = new Intent(EventsActivity.this, EventDetailActivity.class);
 //
@@ -230,7 +239,8 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
 //
 //        startActivity(intent);
 //    }
-//}
+//
+    }
 }
 
 
