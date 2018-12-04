@@ -3,6 +3,8 @@
     package="com.example.sothengchheang.ckcc_joul_pteas">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
 
     <application
         android:name=".MyApp"
@@ -13,19 +15,29 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
+
+        <uses-library android:name="org.apache.http.legacy" android:required="false"/>
+
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="@string/google_map_api_key"/>
+
         <activity android:name=".DrawerActivity">
+        <!--<activity android:name=".MapActivity">-->
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".MapActivity"/>
         <!-- <activity android:name=".DrawerActivity"></activity> -->
         <activity
             android:name=".Add_Item_Activity"
             android:label="@string/title_activity_add__item_"
             android:theme="@style/AppTheme" />
-        <activity android:name=".Detail_List_Activity"></activity>
+        <activity android:name=".Detail_List_Activity" />
+        <activity android:name=".LoginActivity"></activity>
     </application>
 
 </manifest>

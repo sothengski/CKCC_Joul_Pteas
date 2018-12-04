@@ -1,7 +1,11 @@
 package com.example.sothengchheang.ckcc_joul_pteas;
 
+import android.Manifest;
+import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
+import android.location.Location;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
@@ -9,14 +13,22 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
+import com.google.android.gms.location.FusedLocationProviderClient;
+import com.google.android.gms.location.LocationCallback;
+import com.google.android.gms.location.LocationRequest;
+import com.google.android.gms.location.LocationResult;
+import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.tasks.Continuation;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -34,10 +46,14 @@ import java.util.Map;
 
 public class Add_Item_Activity extends AppCompatActivity {
 
+
     private final int GALLERY_REQUEST_CODE = 1;
+
     private ImageView imgUpload;
     private Bitmap selectedImage;
     private ProgressBar progressBar;
+    private EditText etxtCoordinate;
+    private Button btnMap;
 
 
     @Override
@@ -47,8 +63,22 @@ public class Add_Item_Activity extends AppCompatActivity {
         setContentView(R.layout.activity_add__item);
         imgUpload = findViewById(R.id.img_upload);
         progressBar = findViewById(R.id.progressBar);
+        etxtCoordinate = findViewById(R.id.etxt_coordinate);
+        btnMap = findViewById(R.id.btn_mapview);
 
+        //loadUserCurrentLocation();
     }
+
+
+
+    public void onItemViewClick(View view){
+        Intent intent = new Intent(this,MapActivity.class);
+        startActivity(intent);
+    }
+
+
+
+
 
     public void onSaveButtonClick(View view) {
         progressBar.setVisibility(View.VISIBLE);

@@ -6,12 +6,24 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
+
+import com.facebook.drawee.view.SimpleDraweeView;
+
+import org.w3c.dom.Text;
 
 
 /**
  * A simple {@link Fragment} subclass.
  */
 public class ProfileFragment extends Fragment {
+
+    private SimpleDraweeView imgProfile;
+    private TextView txtName;
+    private TextView txtEmail;
+    private TextView txtGender;
+    private TextView txtBirthday;
+    private TextView txtAdress;
 
 
     public ProfileFragment() {
@@ -23,7 +35,8 @@ public class ProfileFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_profile, container, false);
+        View home = inflater.inflate(R.layout.fragment_profile, container,false);
+        return home;
     }
 
 }
