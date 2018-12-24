@@ -111,7 +111,7 @@ public class FavoritesFragment extends Fragment implements View.OnClickListener{
         public void onBindViewHolder(@NonNull ItemViewHolder itemViewHolder, int i) {
             Item item = items[i];
             itemViewHolder.txtPrice.setText(item.getPrice());
-            itemViewHolder.txtDate.setText(item.getDate());
+            itemViewHolder.txtLocation.setText(item.getDate());
             itemViewHolder.imageView.setImageURI(item.getImageUrl());
         }
 
@@ -130,14 +130,14 @@ public class FavoritesFragment extends Fragment implements View.OnClickListener{
     class ItemViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
         private SimpleDraweeView imageView;
         private TextView txtPrice;
-        private TextView txtDate;
+        private TextView txtLocation;
 
         public ItemViewHolder(@NonNull View itemView) {
             super(itemView);
 
             imageView = itemView.findViewById(R.id.img_list);
             txtPrice = itemView.findViewById(R.id.txt_price);
-            txtDate = itemView.findViewById(R.id.txt_date);
+            txtLocation = itemView.findViewById(R.id.txt_location);
 
             itemView.setOnClickListener(this);
         }

@@ -1,22 +1,59 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="220dp"
-    android:background="@android:color/holo_blue_dark"
-    >
-    <ImageView
-        android:layout_width="92dp"
-        android:src="@drawable/ic_mnu_profile"
-        android:id="@+id/img_profile"
-        android:layout_height="92dp"
-        android:layout_centerInParent="true"/>
-    <TextView
-        android:gravity="center"
-        android:layout_below="@id/img_profile"
-        android:text="Sotheng Ski"
-        android:layout_width="100dp"
-        android:layout_height="20dp"
+    android:background="@drawable/facebook">
 
-        android:layout_centerInParent="true"/>
+    <!--android:clickable="true"-->
+    <!--android:focusable="true"-->
+    <!--android:foreground="?attr/selectableItemBackgroundBorderless"-->
+
+    <!--android:orientation="vertical"-->
+    <!--android:padding="16dp"-->
+    <!--android:theme="@style/ThemeOverlay.AppCompat.Dark">-->
+
+    <com.facebook.drawee.view.SimpleDraweeView
+        android:id="@+id/img_profile_nav"
+        app:roundAsCircle="true"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:layout_centerInParent="true"
+        android:layout_gravity="center_horizontal"
+        app:placeholderImage="@drawable/ic_mnu_profile" />
+    <!--<com.facebook.drawee.view.SimpleDraweeView-->
+    <!--android:layout_width="92dp"-->
+    <!--android:src="@drawable/ic_mnu_profile"-->
+    <!--android:id="@+id/img_profile"-->
+    <!--android:layout_height="92dp"-->
+    <!--android:layout_centerInParent="true"/>-->
+    <TextView
+        android:id="@+id/txtName_nav"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/img_profile_nav"
+        android:layout_centerInParent="true"
+        android:layout_gravity="center_horizontal"
+        android:text=""
+        android:textSize="30sp" />
+
+    <TextView
+        android:id="@+id/logout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:paddingRight="8dp"
+        android:text="Log Out "
+        android:textColor="@color/colorPrimaryDark"
+        android:textSize="14sp"
+        android:textStyle="italic|bold" />
+    <!--<TextView-->
+    <!--android:gravity="center"-->
+    <!--android:layout_below="@id/img_profile"-->
+    <!--android:text="Sotheng Ski"-->
+    <!--android:layout_width="100dp"-->
+    <!--android:layout_height="20dp"-->
+
+    <!--android:layout_centerInParent="true"/>-->
 
 </RelativeLayout>

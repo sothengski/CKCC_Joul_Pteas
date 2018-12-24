@@ -1,32 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
-
+    xmlns:tools="http://schemas.android.com/tools"
     >
     <item
         android:id="@+id/menu_home"
-        android:icon="@drawable/ic_mnu_profile"
+        android:checkable="true"
+        android:checked="true"
+        android:icon="@drawable/ic_home"
         android:title="Home" />
 
     <item
         android:id="@+id/menu_profile"
+        android:checkable="true"
         android:icon="@drawable/ic_mnu_profile"
         android:title="Profile" />
 
     <item
         android:id="@+id/menu_favorites"
-        android:icon="@drawable/ic_mnu_profile"
+        android:checkable="true"
+        android:icon="@drawable/ic_favorite"
         android:title="Favorites" />
+
     <item
-        android:id="@+id/menu_settings"
-        android:icon="@drawable/ic_mnu_profile"
-        android:title="Settings" />
-    <item
-        android:id="@+id/menu_aboutUS"
-        android:icon="@drawable/ic_mnu_profile"
+        android:id="@+id/menu_aboutus"
+        android:checkable="true"
+        android:icon="@drawable/ic_aboutus"
         android:title="AboutUS" />
     <item
-        android:id="@+id/menu_contactUS"
-        android:icon="@drawable/ic_mnu_profile"
+        android:id="@+id/menu_contactus"
+        android:checkable="true"
+        android:icon="@drawable/ic_contactus"
         android:title="ContactUS" />
 
 </menu>

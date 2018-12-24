@@ -1,6 +1,7 @@
 package com.example.sothengchheang.ckcc_joul_pteas;
 
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -176,8 +177,8 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
         @Override
         public void onBindViewHolder(@NonNull ItemViewHolder itemViewHolder, int i) {
             Item item = items[i];
-            itemViewHolder.txtPrice.setText(item.getTitle());
-            itemViewHolder.txtDate.setText(item.getDate());
+            itemViewHolder.txtPrice.setText(item.getPrice());
+            itemViewHolder.txtLocation.setText(item.getLocation());
             itemViewHolder.imageView.setImageURI(item.getImageUrl());
         }
 
@@ -196,21 +197,22 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
         class ItemViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
             private SimpleDraweeView imageView;
             private TextView txtPrice;
-            private TextView txtDate;
+            private TextView txtLocation;
 
             public ItemViewHolder(@NonNull View itemView) {
                 super(itemView);
 
                 imageView = itemView.findViewById(R.id.img_list);
                 txtPrice = itemView.findViewById(R.id.txt_price);
-                txtDate = itemView.findViewById(R.id.txt_date);
+                txtLocation = itemView.findViewById(R.id.txt_location);
 
                 itemView.setOnClickListener(this);
             }
 
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getActivity(), Detail_List_Activity.class);
+
+                Intent intent = new Intent(getActivity(), DetailActivity.class);
 
                 //Pass data
                 int index = getAdapterPosition();

@@ -1,5 +1,6 @@
 package com.example.sothengchheang.ckcc_joul_pteas;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -34,12 +35,14 @@ public class ProfileFragment extends Fragment {
         return home;
     }
 
+//    @SuppressLint("ResourceAsColor")
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
         imgProfile = view.findViewById(R.id.img_profile);
         txtName = view.findViewById(R.id.txtName);
+//        txtName.setTextColor(R.color.colorAccent);
         txtEmail = view.findViewById(R.id.txtEmail);
         txtGender = view.findViewById(R.id.txtGender);
         txtBirthday = view.findViewById(R.id.txtBirthday);
@@ -80,7 +83,6 @@ public class ProfileFragment extends Fragment {
 
         String profileImageUrl = "http://graph.facebook.com/" + profile.id + "/picture?type=large";
         imgProfile.setImageURI(profileImageUrl);
-
 
     }
 

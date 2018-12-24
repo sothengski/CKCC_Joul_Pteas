@@ -6,6 +6,8 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
 
 import com.facebook.AccessToken;
 import com.facebook.CallbackManager;
@@ -23,7 +25,7 @@ import com.google.firebase.auth.FirebaseAuth;
 public class LoginActivity extends AppCompatActivity implements FacebookCallback<LoginResult> {
 
     private CallbackManager callbackManager;
-
+    Button signIn;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -45,6 +47,17 @@ public class LoginActivity extends AppCompatActivity implements FacebookCallback
         }
 
         setContentView(R.layout.signin_signup);
+        signIn = findViewById(R.id.signin_btn);
+        signIn.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                // TODO Auto-generated method stub
+                Intent intent = new Intent(LoginActivity.this , DrawerActivity.class);
+                startActivity(intent);
+            }
+
+        });
 
         LoginButton btnFacebookLogin = findViewById(R.id.login_fb_button);
         btnFacebookLogin.setReadPermissions("email", "user_birthday", "user_gender", "user_location");

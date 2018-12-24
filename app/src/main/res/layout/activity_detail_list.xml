@@ -1,65 +1,85 @@
-<?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    xmlns:fresco="http://schemas.android.com/apk/res-auto"
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical">
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
 
-    <android.support.v7.widget.Toolbar
+    <android.support.design.widget.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
 
-        app:title="Detail Information"
+        <android.support.v7.widget.Toolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
         android:background="@color/colorPrimary"
+            app:layout_scrollFlags="scroll|enterAlways"
+            app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
         android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+        app:title="Detail Information" />
 
-        />
-    <com.facebook.drawee.view.SimpleDraweeView
-        fresco:roundedCornerRadius="10dp"
-        android:id="@+id/img_list"
+        <android.support.design.widget.TabLayout
+            android:id="@+id/tabs"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:tabMode="fixed"
+            app:tabGravity="fill"/>
+    </android.support.design.widget.AppBarLayout>
+    <android.support.v4.view.ViewPager
+        android:id="@+id/viewpager"
         android:layout_width="match_parent"
-        android:layout_height="220dp"
-        fresco:placeholderImage="@drawable/ic_image_default"
-        android:scaleType="centerInside"/>
-    <!--<ImageView-->
+        android:layout_height="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"  />
+</android.support.design.widget.CoordinatorLayout>
+
+
+    <!--<?xml version="1.0" encoding="utf-8"?>-->
+<!--<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"-->
+    <!--xmlns:app="http://schemas.android.com/apk/res-auto"-->
+    <!--xmlns:tools="http://schemas.android.com/tools"-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="match_parent">-->
+
+    <!--<LinearLayout-->
+        <!--android:id="@+id/mainLayout"-->
         <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="160dp" />-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:orientation="vertical">-->
 
-    <TextView
-        android:layout_margin="5dp"
-        android:id="@+id/txt_location"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Location" />
+        <!--<android.support.v7.widget.Toolbar-->
+            <!--android:id="@+id/toolbar"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="?attr/actionBarSize"-->
+            <!--android:background="@color/colorPrimary"-->
+            <!--android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"-->
+            <!--app:title="Detail Information" />-->
 
-    <!--<TextView-->
-        <!--android:layout_margin="5dp"-->
-        <!--android:id="@+id/txt_title"-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:text="Title" />-->
+        <!--<com.astuetz.PagerSlidingTabStrip-->
+            <!--android:id="@+id/tabs"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="?attr/actionBarSize"-->
+            <!--android:background="#00BCD4"-->
+            <!--app:pstsIndicatorColor="#3f51b5"-->
+            <!--app:pstsIndicatorHeight="4dp"-->
+            <!--app:pstsShouldExpand="true"-->
+            <!--app:pstsTabTextColor="@android:color/white" />-->
 
-    <!--<TextView-->
-        <!--android:layout_margin="5dp"-->
-        <!--android:id="@+id/txt_date"-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:text="Date" />-->
+        <!--<ImageSwitcher-->
+            <!--android:id="@+id/descriptImage"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="160dp" />-->
 
-    <TextView
-        android:layout_margin="5dp"
-        android:id="@+id/txt_price"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Price: " />
+        <!--<android.support.v4.view.ViewPager-->
+            <!--android:id="@+id/view_pager"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_weight="1"-->
+            <!--android:background="@android:color/white">-->
 
-    <TextView
-        android:layout_margin="5dp"
-        android:id="@+id/txt_description"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Description" />
+        <!--</android.support.v4.view.ViewPager>-->
 
-</LinearLayout>
+
+    <!--</LinearLayout>-->
+
+
+<!--</android.support.design.widget.CoordinatorLayout>-->

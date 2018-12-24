@@ -112,12 +112,12 @@ public class Add_Item_Activity extends AppCompatActivity {
     }
 
     private void addItemToFirestore(String imageUrl) {
-        EditText etxtTitle = findViewById(R.id.etxt_title);
+        EditText etxtPrice = findViewById(R.id.etxt_price);
         EditText etxtDate = findViewById(R.id.etxt_date);
         EditText etxtLocation = findViewById(R.id.etxt_location);
         EditText etxtDescription = findViewById(R.id.etxt_description);
 
-        final String title = etxtTitle.getText().toString();
+        final String price = etxtPrice.getText().toString();
         final String date = etxtDate.getText().toString();
         final String location = etxtLocation.getText().toString();
         final String description = etxtDescription.getText().toString();
@@ -126,7 +126,7 @@ public class Add_Item_Activity extends AppCompatActivity {
         FirebaseFirestore db = FirebaseFirestore.getInstance();
 
         Map<String, Object> item = new HashMap<>();
-        item.put("title", title);
+        item.put("price", price);
         item.put("date", date);
         item.put("location", location);
         item.put("description", description);

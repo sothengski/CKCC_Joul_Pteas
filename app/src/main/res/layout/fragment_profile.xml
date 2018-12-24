@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:gravity="center"
-    >
+    android:gravity="center">
+
 
     <android.support.v4.widget.DrawerLayout
         android:id="@+id/drawer1"
@@ -13,48 +12,99 @@
         android:layout_height="match_parent">
 
         <LinearLayout
+
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layout_margin="5dp"
             android:gravity="center_horizontal"
-            android:layout_margin="15dp"
-            android:orientation="vertical"
-            >
+            android:orientation="vertical">
 
-            <com.facebook.drawee.view.SimpleDraweeView
-                android:id="@+id/img_profile"
-                app:roundAsCircle="true"
-                android:layout_width="120dp"
-                android:layout_height="120dp"
-                app:placeholderImage="@drawable/ic_mnu_profile"
-                />
+            <LinearLayout
 
-            <TextView
-            android:id="@+id/txtName"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Name" />
+                android:foreground="@drawable/myrect"
+                android:background="@drawable/facebook"
 
-            <TextView
-                android:id="@+id/txtEmail"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Email" />
-            <TextView
-                android:id="@+id/txtGender"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Gender" />
-            <TextView
-                android:id="@+id/txtBirthday"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Birthday" />
+                android:layout_width="match_parent"
+                android:layout_height="170dp"
+                android:gravity="center">
 
-            <TextView
-                android:id="@+id/txtAddress"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Address" />
+                <LinearLayout
+                    android:layout_width="170dp"
+                    android:layout_height="170dp"
+                    android:background="@drawable/profile_circle"
+                    android:gravity="center">
+
+                    <com.facebook.drawee.view.SimpleDraweeView
+                        android:id="@+id/img_profile"
+                        android:layout_width="150dp"
+                        android:layout_height="150dp"
+                        app:placeholderImage="@drawable/ic_mnu_profile"
+                        app:roundAsCircle="true" />
+                </LinearLayout>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="10dp"
+                android:layout_height="10dp">
+            </LinearLayout>
+            <LinearLayout
+                android:padding="15dp"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/myrect"
+                android:gravity="start"
+                android:orientation="vertical">
+                <LinearLayout
+                    android:layout_width="10dp"
+                    android:layout_height="10dp">
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/txtName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Name: "
+                    android:textSize="27sp" />
+                <LinearLayout
+                    android:layout_width="10dp"
+                    android:layout_height="10dp">
+                </LinearLayout>
+                <TextView
+                    android:id="@+id/txtEmail"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Email: "
+                    android:textSize="20sp" />
+                <LinearLayout
+                    android:layout_width="10dp"
+                    android:layout_height="10dp">
+                </LinearLayout>
+                <TextView
+                    android:id="@+id/txtGender"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Gender: "
+                    android:textSize="20sp" />
+                <LinearLayout
+                    android:layout_width="10dp"
+                    android:layout_height="10dp">
+                </LinearLayout>
+                <TextView
+                    android:id="@+id/txtBirthday"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Birthday: "
+                    android:textSize="20sp" />
+                <LinearLayout
+                    android:layout_width="10dp"
+                    android:layout_height="10dp">
+                </LinearLayout>
+                <TextView
+                    android:id="@+id/txtAddress"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Address: "
+                    android:textSize="20sp" />
+            </LinearLayout>
 
         </LinearLayout>
 
@@ -65,13 +115,13 @@
 
             <android.support.design.widget.NavigationView
                 android:id="@+id/nav_view"
-                app:headerLayout="@layout/navigation_view_header"
-                app:menu="@menu/menu"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-
                 android:layout_gravity="start"
-                android:fitsSystemWindows="true" />
+                android:fitsSystemWindows="true"
+
+                app:headerLayout="@layout/navigation_view_header"
+                app:menu="@menu/menu" />
 
         </LinearLayout>
     </android.support.v4.widget.DrawerLayout>

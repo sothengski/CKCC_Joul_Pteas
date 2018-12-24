@@ -9,10 +9,10 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
         <EditText
-            android:id="@+id/etxt_title"
+            android:id="@+id/etxt_price"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Title"/>
+            android:hint="Price"/>
         <EditText
             android:id="@+id/etxt_date"
             android:layout_width="match_parent"

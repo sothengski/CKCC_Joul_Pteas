@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:title="Image"
+        android:id="@+id/mnu_image"
+        android:icon="@drawable/ic_image_default"/>
+    <item android:title="Maps"
+        android:id="@+id/mnu_maps"
+        android:icon="@drawable/ic_location"/>
+    <item android:title="Contact"
+        android:id="@+id/mnu_contact"
+        android:icon="@drawable/ic_contact"/>
+</menu>

@@ -17,7 +17,7 @@ public class Detail_List_Activity extends Activity {
 
         TextView txtLocation = findViewById(R.id.txt_location);
         TextView txtPrice = findViewById(R.id.txt_price);
-        TextView txtDescription = findViewById(R.id.txt_description);
+//        TextView txtDescription = findViewById(R.id.txt_description);
         SimpleDraweeView imgItem = findViewById(R.id.img_list);
 
         //Get data from HomeFragment
@@ -28,7 +28,7 @@ public class Detail_List_Activity extends Activity {
 
         txtLocation.setText(item.getLocation());
         txtPrice.setText(item.getPrice());
-        txtDescription.setText(item.getDescription());
+//        txtDescription.setText(item.getDescription());
         imgItem.setImageURI(item.getImageUrl());
     }
 }
