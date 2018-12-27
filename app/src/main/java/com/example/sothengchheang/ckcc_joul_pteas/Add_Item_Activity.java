@@ -5,6 +5,8 @@ import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
+import android.location.Address;
+import android.location.Geocoder;
 import android.location.Location;
 import android.net.Uri;
 import android.os.Bundle;
@@ -24,6 +26,11 @@ import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
+import com.google.android.gms.common.api.Status;
+import com.google.android.gms.location.places.Place;
+import com.google.android.gms.location.places.ui.PlaceAutocomplete;
+import com.google.android.gms.common.GooglePlayServicesNotAvailableException;
+import com.google.android.gms.common.GooglePlayServicesRepairableException;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationCallback;
 import com.google.android.gms.location.LocationRequest;
@@ -42,18 +49,24 @@ import java.io.ByteArrayOutputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 
 public class Add_Item_Activity extends AppCompatActivity {
 
 
     private final int GALLERY_REQUEST_CODE = 1;
+    private final int MAP_REQUEST_CODE = 2;
+    int PLACE_AUTOCOMPLETE_REQUEST_CODE = 3;
 
     private ImageView imgUpload;
     private Bitmap selectedImage;
     private ProgressBar progressBar;
-    private EditText etxtCoordinate;
+    private EditText etxtCoordinate, etxtLocation,etxtprice,etxtdescription,etxtdate;
     private Button btnMap;
+    private double SavedLat;
+    private double SavedLng;
 
 
     @Override
@@ -63,6 +76,10 @@ public class Add_Item_Activity extends AppCompatActivity {
         setContentView(R.layout.activity_add__item);
         imgUpload = findViewById(R.id.img_upload);
         progressBar = findViewById(R.id.progressBar);
+//        etxtprice = findViewById(R.id.etxt_price);
+//        etxtdate = findViewById(R.id.etxt_date);
+//        etxtdescription = findViewById(R.id.etxt_description);
+        etxtLocation = findViewById(R.id.etxt_location);
         etxtCoordinate = findViewById(R.id.etxt_coordinate);
         btnMap = findViewById(R.id.btn_mapview);
 
@@ -70,14 +87,27 @@ public class Add_Item_Activity extends AppCompatActivity {
     }
 
 
-
-    public void onItemViewClick(View view){
-        Intent intent = new Intent(this,MapActivity.class);
+    public void onItemViewClick(View view) {
+        Intent intent = new Intent(this, MapActivity.class);
         startActivity(intent);
     }
 
+    public void onPickOnMapClick(View view) {
+        Intent intent = new Intent(this, MapActivity.class);
+        //startActivity(intent);
+        startActivityForResult(intent, MAP_REQUEST_CODE);
+    }
 
-
+    public void onSearchByNameClick(View view) {
+        try {
+            Intent intent = new PlaceAutocomplete.IntentBuilder(PlaceAutocomplete.MODE_FULLSCREEN).build(this);
+            startActivityForResult(intent, PLACE_AUTOCOMPLETE_REQUEST_CODE);
+        } catch (GooglePlayServicesRepairableException e) {
+            e.printStackTrace();
+        } catch (GooglePlayServicesNotAvailableException e) {
+            e.printStackTrace();
+        }
+    }
 
 
     public void onSaveButtonClick(View view) {
@@ -137,10 +167,10 @@ public class Add_Item_Activity extends AppCompatActivity {
             public void onComplete(@NonNull Task<DocumentReference> task) {
                 progressBar.setVisibility(View.GONE);
                 if (task.isSuccessful()) {
-                    Toast.makeText(Add_Item_Activity.this,"Add item success", Toast.LENGTH_LONG).show();
+                    Toast.makeText(Add_Item_Activity.this, "Add item success", Toast.LENGTH_LONG).show();
                     finish();
-                }else {
-                    Toast.makeText(Add_Item_Activity.this,"Add Item fail" + task.getException(),Toast.LENGTH_LONG).show();
+                } else {
+                    Toast.makeText(Add_Item_Activity.this, "Add Item fail" + task.getException(), Toast.LENGTH_LONG).show();
                 }
             }
         });
@@ -163,6 +193,64 @@ public class Add_Item_Activity extends AppCompatActivity {
             } catch (IOException e) {
                 e.printStackTrace();
             }
+
+            if (requestCode == MAP_REQUEST_CODE) {
+                double lat = data.getDoubleExtra("lat", 0);
+                double lng = data.getDoubleExtra("lng", 0);
+                SavedLat = lat;
+                SavedLng = lng;
+                reverseGeocode(lat, lng);
+            }
+
+
+            if (requestCode == PLACE_AUTOCOMPLETE_REQUEST_CODE) {
+                if (resultCode == RESULT_OK) {
+                    Place place = PlaceAutocomplete.getPlace(this, data);
+                    etxtLocation.setText(place.getName());
+
+                    SavedLat = place.getLatLng().latitude;
+                    SavedLng = place.getLatLng().longitude;
+                    Log.i("ckcc", "Place: " + SavedLng);
+                    Log.i("ckcc", "Place: " + SavedLat);
+                    Log.i("ckcc", "Place: " + place.getLatLng());
+                    Log.i("ckcc", "Place: " + place.getName());
+                } else if (resultCode == PlaceAutocomplete.RESULT_ERROR) {
+                    Status status = PlaceAutocomplete.getStatus(this, data);
+                    Log.i("ckcc", status.getStatusMessage());
+                } else if (resultCode == RESULT_CANCELED) {
+                    //
+                }
+
+            }
+
         }
+
+    }
+
+    private void reverseGeocode(final double lat, final double lng) {
+        Log.d("ckcc", "reverseGeocode");
+        final Geocoder geocoder = new Geocoder(this, new Locale("km"));
+        Thread geocodeThread = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    List<Address> addresses = geocoder.getFromLocation(lat, lng, 1);
+                    final Address address = addresses.get(0);
+                    //etxtAddress.setText(address.getAddressLine(0));
+                    Log.d("ckcc", "Address: " + address.toString());
+                    // Dispatch background thread to main thread
+                    runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            etxtLocation.setText(address.getAddressLine(0));
+                        }
+                    });
+                } catch (IOException e) {
+                    Toast.makeText(Add_Item_Activity.this, "Error while trying to reverse geocode.", Toast.LENGTH_SHORT).show();
+                    Log.d("ckcc", "reverseGeocode error: " + e.getMessage());
+                }
+            }
+        });
+        geocodeThread.start();
     }
 }

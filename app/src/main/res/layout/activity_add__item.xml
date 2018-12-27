@@ -33,13 +33,22 @@
             android:layout_width="match_parent"
             android:layout_height="150dp"
             android:hint="Description"/>
-
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
         <Button
             android:id="@+id/btn_mapview"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:onClick="onItemViewClick"
             android:text="Pick up Map"/>
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="onSearchByNameClick"
+            android:text="Search by Name" />
+        </LinearLayout>
         <ImageView
             android:id="@+id/img_upload"
             android:layout_width="120dp"

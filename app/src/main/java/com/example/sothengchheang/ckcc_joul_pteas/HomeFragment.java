@@ -11,8 +11,12 @@ import android.support.v4.app.Fragment;
 import android.support.v7.view.menu.MenuView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.SearchView;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -35,6 +39,7 @@ import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.QuerySnapshot;
 import com.google.gson.Gson;
 
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -45,6 +50,8 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
     //    private RecyclerView recyclerView;
     //    private RecyclerView recyclerView;
     private ItemsAdapter itemsAdapter;
+    private Item[] AllItemData;
+    private Item[] ItemDataShow;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -67,6 +74,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
         });
         RecyclerView recyclerView = view.findViewById(R.id.recycler_view);
 //        recyclerView = view.findViewById(R.id.recycler_view);
+        setHasOptionsMenu(true);
 
         //Layout Manager
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getActivity());
@@ -153,15 +161,33 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
 
     }
 
-    class ItemsAdapter extends RecyclerView.Adapter<ItemsAdapter.ItemViewHolder> {
-        private Item[] items;
+    public class ItemsAdapter extends RecyclerView.Adapter<ItemsAdapter.ItemViewHolder> {
+
 
         public Item[] getItems() {
-            return items;
+            return AllItemData;
         }
 
         public void setItems(Item[] items) {
-            this.items = items;
+            AllItemData = items;
+            ItemDataShow = items;
+            notifyDataSetChanged();
+        }
+//        public void setData(Store[] data) {
+////            AllStoreData = data;
+////            StoreDataShow = data;
+////            notifyDataSetChanged();
+////        }
+
+        public void search(String keywords){
+            List<Item> foundItem = new ArrayList<>();
+            for (Item item : AllItemData){
+                if (item.getLocation().toLowerCase().contains(keywords.toLowerCase())) {
+                    foundItem.add(item);
+                }
+            }
+            ItemDataShow = new Item[foundItem.size()];
+            foundItem.toArray(ItemDataShow);
             notifyDataSetChanged();
         }
 
@@ -176,7 +202,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
 
         @Override
         public void onBindViewHolder(@NonNull ItemViewHolder itemViewHolder, int i) {
-            Item item = items[i];
+            Item item = ItemDataShow[i];
             itemViewHolder.txtPrice.setText(item.getPrice());
             itemViewHolder.txtLocation.setText(item.getLocation());
             itemViewHolder.imageView.setImageURI(item.getImageUrl());
@@ -185,7 +211,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
 
         @Override
         public int getItemCount() {
-            return (items == null) ? 0 : items.length;
+            return (ItemDataShow == null) ? 0 : ItemDataShow.length;
 //            if (lists == null) {
 //                return 0;
 //            } else {
@@ -216,7 +242,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
 
                 //Pass data
                 int index = getAdapterPosition();
-                Item item = items[index];
+                Item item = ItemDataShow[index];
                 Gson gson = new Gson();
                 String itemJson = gson.toJson(item);
                 intent.putExtra("itemJson", itemJson);
@@ -242,6 +268,33 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
 //        startActivity(intent);
 //    }
 //
+    }
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        super.onCreateOptionsMenu(menu, inflater);
+
+        //Cart menu
+        inflater.inflate(R.menu.toolbar_item_menu, menu);
+
+
+        final MenuItem searchItem = menu.findItem(R.id.menu_search);
+        SearchView searchView = (SearchView) searchItem.getActionView();
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String s) {
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String keyword) {
+//                homeAdapter.search(keyword);
+                Log.d("ckcc", "search"+ keyword);
+                ItemsAdapter itemsAdapter = new ItemsAdapter();
+                itemsAdapter.search(keyword);
+
+                return false;
+            }
+        });
     }
 }
 

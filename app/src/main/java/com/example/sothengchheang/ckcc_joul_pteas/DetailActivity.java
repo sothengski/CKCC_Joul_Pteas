@@ -1,45 +1,23 @@
 package com.example.sothengchheang.ckcc_joul_pteas;
 
-import android.app.Activity;
 import android.content.Intent;
-import android.content.res.ColorStateList;
-import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
-import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
-import android.os.AsyncTask;
+import android.media.Image;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.design.widget.BottomNavigationView;
-import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.ViewPager;
-import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
-import android.view.MenuItem;
-import android.view.View;
-import android.view.Window;
-import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
-import android.widget.ImageSwitcher;
-import android.widget.ImageView;
+import android.util.Log;
 import android.widget.TextView;
-import android.widget.Toolbar;
-import android.widget.ViewSwitcher;
 
-import com.astuetz.PagerSlidingTabStrip;
 import com.facebook.drawee.view.SimpleDraweeView;
 import com.google.gson.Gson;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import butterknife.BindView;
-import butterknife.ButterKnife;
 
 public class DetailActivity extends AppCompatActivity {
 
@@ -53,6 +31,10 @@ public class DetailActivity extends AppCompatActivity {
     private android.support.v7.widget.Toolbar toolbar;
     private TabLayout tabLayout;
     private ViewPager viewPager;
+    private String getlocation;
+    private String getprice;
+    private String getdescription;
+    private String getimg;
 
     // images for switcher
     private static final int[] IMAGES = {R.drawable.ic_image_default, R.drawable.ic_location, R.drawable.ic_contact};
@@ -64,6 +46,8 @@ public class DetailActivity extends AppCompatActivity {
         toolbar = (android.support.v7.widget.Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        //back button
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         viewPager = (ViewPager) findViewById(R.id.viewpager);
@@ -84,17 +68,40 @@ public class DetailActivity extends AppCompatActivity {
         Gson gson = new Gson();
         Item item = gson.fromJson(itemJson, Item.class);
 
+        getlocation = item.getLocation();
+        getprice = item.getPrice();
+        getdescription = item.getDescription();
+        getimg = item.getImageUrl();
+
+        Log.d("ckcc", "item____"+ getlocation);
+
+
+
 //        txtLocation.setText(item.getLocation());
 //        txtPrice.setText(item.getPrice());
 //        txtDescription.setText(item.getDescription());
 //        imgItem.setImageURI(item.getImageUrl());
+
+
     }
 
+    public String getlocation(){
+        return getlocation;
+    }
+    public String getprice(){
+        return getprice;
+    }
+    public String getdescription(){
+        return getdescription;
+    }
+    public String getimg(){
+        return getimg;
+    }
 
     private void setupViewPager(ViewPager viewPager) {
         ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
         adapter.addFragment(new ImageFragment(), "Images");
-        adapter.addFragment(new MapsFragment(), "Map");
+        adapter.addFragment(new MapFragment(), "Map");
         adapter.addFragment(new ContactFragment(), "Contact");
         viewPager.setAdapter(adapter);
     }

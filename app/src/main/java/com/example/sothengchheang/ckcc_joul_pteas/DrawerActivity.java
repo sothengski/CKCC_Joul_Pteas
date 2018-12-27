@@ -1,10 +1,7 @@
 package com.example.sothengchheang.ckcc_joul_pteas;
 
-import android.content.Intent;
 import android.os.Bundle;
-import android.provider.ContactsContract;
 import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
@@ -15,33 +12,33 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.facebook.AccessToken;
 import com.facebook.GraphRequest;
 import com.facebook.GraphResponse;
 import com.facebook.drawee.view.SimpleDraweeView;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.firestore.DocumentSnapshot;
-import com.google.firebase.firestore.FirebaseFirestore;
+import com.facebook.login.LoginManager;
 import com.google.gson.Gson;
 
 import org.json.JSONObject;
-
-import java.util.HashMap;
-import java.util.Map;
 
 
 public class DrawerActivity extends AppCompatActivity {
 
     private SimpleDraweeView imgProfile_nav;
     private TextView txtName_nav;
+    private Button logout;
+
+    LoginManager loginManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_drawer);
+
+        loginManager = LoginManager.getInstance();
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -79,13 +76,21 @@ public class DrawerActivity extends AppCompatActivity {
                     onFavoriteClick();
                 } else if (menuItem.getItemId() == R.id.menu_aboutus) {
                     onAboutUSClick();
-                } else if (menuItem.getItemId() == R.id.menu_contactus) {
-                    onContactsClick();
                 }
+                //else if (menuItem.getItemId() == R.id.menu_contactus) {
+                    //onContactsClick();
+                //}
+                else {
+                        onLogout();
+                    }
 
                 return true;
             }
         });
+    }
+
+    private void onLogout() {
+        loginManager.logOut();
     }
 
     @Override
@@ -122,7 +127,7 @@ public class DrawerActivity extends AppCompatActivity {
     }
 
     private void onMapClick() {
-        MapsFragment mapsFragment = new MapsFragment();
+        MapFragment mapsFragment = new MapFragment();
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
 

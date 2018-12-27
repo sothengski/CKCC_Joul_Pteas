@@ -19,13 +19,13 @@
             android:orientation="vertical">
 
 
-            <android.support.v7.widget.SearchView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+            <!--<android.support.v7.widget.SearchView-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content"-->
 
-                android:background="@color/icons">
+                <!--android:background="@color/icons">-->
 
-            </android.support.v7.widget.SearchView>
+            <!--</android.support.v7.widget.SearchView>-->
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"

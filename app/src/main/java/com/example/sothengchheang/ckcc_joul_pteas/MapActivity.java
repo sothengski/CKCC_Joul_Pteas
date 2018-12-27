@@ -138,6 +138,11 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
 
     @Override
     public void onMapReady(GoogleMap googleMap) {
+
+        this.googleMap = googleMap;
+        //Add long press Listener to Map object
+        googleMap.setOnMapLongClickListener((GoogleMap.OnMapLongClickListener) this);
+
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             String[] permissions = {Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION};
             ActivityCompat.requestPermissions(this, permissions, LOCATION_PERMISSION_REQUEST_CODE);
@@ -154,6 +159,8 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
         loadUserCurrentLocation();
         googleMap.setMyLocationEnabled(true);
     }
+
+
 
     private void moveCamera(Location location){
         LatLng latLng = new LatLng(location.getLatitude(),location.getLongitude());
